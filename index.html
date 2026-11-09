@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Жахонгирбек & Медине — Таклифнома</title>
+<meta name="description" content="Сизни 2026 йил 5 декабрь куни никоҳ тўйимизга таклиф этамиз.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Жахонгирбек & Медине — Таклифнома">
+<meta property="og:description" content="5 декабрь 2026, соат 18:00 · Чирчиқ, Кимёгарлар тўйхонаси">
+<meta name="theme-color" content="#f6f2eb">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23f6f2eb' stroke='%231d1b18' stroke-width='2'/><text x='50' y='64' font-size='42' text-anchor='middle' font-family='serif' font-style='italic' fill='%231d1b18'>J&amp;M</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Great+Vibes&family=Marck+Script&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f6f2eb; --paper:#fbf8f3; --ink:#1d1b18; --muted:#6b665d;
+    --sage:#8e9884; --sage-soft:#c9cfc1; --line:#d6cdbd; --gold:#b9a77f;
+    --script:'Great Vibes','Marck Script',cursive;
+    --serif:'Cormorant Garamond',Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--serif);
+       font-size:clamp(18px,2.2vw,21px);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body.locked{overflow:hidden;height:100svh}
+  a{color:inherit}
+
+  /* ---------- Silk background ---------- */
+  .silk{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .silk span{position:absolute;border-radius:50%;filter:blur(40px);opacity:.75;
+             background:radial-gradient(closest-side,#fff,rgba(255,255,255,0));animation:drift 22s ease-in-out infinite alternate}
+  .silk span:nth-child(1){width:70vmax;height:28vmax;left:-20vmax;top:-6vmax;transform:rotate(-28deg)}
+  .silk span:nth-child(2){width:60vmax;height:22vmax;right:-22vmax;bottom:4vmax;transform:rotate(-30deg);animation-duration:28s}
+  .silk span:nth-child(3){width:40vmax;height:16vmax;left:30vw;top:40vh;opacity:.45;animation-duration:34s}
+  @keyframes drift{to{translate:4vmax 3vmax}}
+
+  /* ---------- Petals ---------- */
+  .petals{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+  .petal{position:absolute;top:-20px;width:8px;height:8px;border-radius:50%;
+         background:radial-gradient(circle at 40% 35%,#fff 0 45%,#efe8da 46% 100%);
+         box-shadow:0 1px 2px rgba(0,0,0,.06);animation:fall linear infinite}
+  @keyframes fall{
+    0%{transform:translate(0,-5vh) rotate(0)}
+    50%{transform:translate(4vw,50vh) rotate(180deg)}
+    100%{transform:translate(-2vw,110vh) rotate(360deg)}
+  }
+
+  /* ---------- Gate / doors ---------- */
+  #gate{position:fixed;inset:0;z-index:50;display:flex;perspective:2200px;transition:opacity 1s ease 1.6s}
+  #gate.gone{display:none}
+  #gate.open{opacity:0;pointer-events:none}
+  .door{position:relative;width:50%;height:100%;overflow:hidden;
+        background:
+          radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.9),rgba(255,255,255,0) 60%),
+          linear-gradient(180deg,#f8f4ed,#efe8dc);
+        transition:transform 2.4s cubic-bezier(.65,0,.2,1);will-change:transform;
+        backface-visibility:hidden}
+  .door.left{transform-origin:left center;box-shadow:inset -14px 0 24px -16px rgba(60,50,30,.25)}
+  .door.right{transform-origin:right center;box-shadow:inset 14px 0 24px -16px rgba(60,50,30,.25)}
+  #gate.open .door.left{transform:rotateY(-108deg)}
+  #gate.open .door.right{transform:rotateY(108deg)}
+  .door .panel{position:absolute;inset:7vmin 5vmin;border:1px solid var(--line);
+               border-radius:999px 999px 6px 6px / 38vmin 38vmin 6px 6px}
+  .door .panel::after{content:"";position:absolute;inset:10px;border:1px solid rgba(185,167,127,.45);border-radius:inherit}
+  .door .handle{position:absolute;top:50%;width:6px;height:70px;margin-top:-35px;border-radius:4px;
+                background:linear-gradient(180deg,#d9cba8,#a8966d);box-shadow:0 2px 4px rgba(0,0,0,.15)}
+  .door.left .handle{right:2.2vmin}
+  .door.right .handle{left:2.2vmin}
+  .door .sprig{position:absolute;width:min(46vmin,260px);opacity:.95}
+  .door.left .sprig{left:-3vmin;bottom:-2vmin}
+  .door.right .sprig{right:-3vmin;top:-2vmin;transform:rotate(180deg)}
+
+  .seal-wrap{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;
+             gap:22px;transition:opacity .6s ease, transform .6s ease}
+  .seal-wrap.hide{opacity:0;transform:scale(.85);pointer-events:none}
+  .seal{position:relative;width:132px;height:132px;border-radius:50%;border:none;cursor:pointer;
+        background:radial-gradient(circle at 35% 30%,#fdfbf7,#e8e0d1 70%,#d8ccb6);
+        box-shadow:0 10px 30px rgba(80,65,40,.18), inset 0 0 0 1px rgba(185,167,127,.6), inset 0 0 0 7px #f4efe6, inset 0 0 0 8px rgba(185,167,127,.5);
+        font-family:var(--script);font-size:46px;color:var(--ink);line-height:1;display:grid;place-items:center;
+        transition:transform .3s ease}
+  .seal:hover{transform:scale(1.05)}
+  .seal::before{content:"";position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(142,152,132,.6);animation:pulse 2.4s ease-out infinite}
+  @keyframes pulse{from{transform:scale(.9);opacity:1}to{transform:scale(1.35);opacity:0}}
+  .seal-hint{font-size:13px;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);text-align:center;padding:0 20px}
+
+  /* ---------- Layout ---------- */
+  main{position:relative;z-index:2}
+  section{position:relative;padding:clamp(70px,12vh,120px) 22px;display:flex;justify-content:center}
+  .wrap{width:100%;max-width:640px;text-align:center;position:relative}
+  .corner{position:absolute;pointer-events:none;width:min(42vw,300px)}
+
+  /* Hero */
+  .hero{min-height:100svh;align-items:center;padding-top:40px;padding-bottom:40px}
+  .hero .corner.tr{top:-10px;right:-20px;transform:scaleX(-1) rotate(180deg)}
+  .hero .corner.bl{bottom:-10px;left:-20px}
+  .leaf{width:150px;display:block;margin:0 auto 8px}
+  .monogram{font-family:var(--script);font-weight:400;font-size:clamp(96px,22vw,170px);line-height:.95;margin:0;letter-spacing:.02em}
+  .monogram .amp{font-size:.5em;margin:0 .12em;vertical-align:.25em}
+  .kicker{letter-spacing:.55em;text-transform:uppercase;font-size:clamp(14px,2.4vw,18px);margin:22px 0 0;padding-left:.55em}
+  .names{font-family:var(--script);font-size:clamp(40px,9vw,64px);line-height:1.15;margin:34px 0 0}
+  .date-row{display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,28px);margin-top:30px;font-size:clamp(15px,2.4vw,18px);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .date-row .big{font-size:clamp(46px,10vw,64px);letter-spacing:0;color:var(--ink);font-weight:300;line-height:1}
+  .date-row .side{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 4px;min-width:96px}
+  .scroll-cue{margin-top:46px;display:inline-flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+  .scroll-cue i{width:1px;height:46px;background:linear-gradient(var(--ink),transparent);animation:cue 2s ease-in-out infinite;transform-origin:top}
+  @keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+  /* Hero intro animation (after doors) */
+  .hero [data-intro]{opacity:0;transform:translateY(18px);filter:blur(6px)}
+  body.revealed .hero [data-intro]{animation:intro 1.4s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--d,0) * 1s)}
+  @keyframes intro{to{opacity:1;transform:none;filter:none}}
+
+  /* Card */
+  .card{background:rgba(251,248,243,.8);backdrop-filter:blur(2px);border:1px solid var(--line);padding:clamp(36px,7vw,64px) clamp(22px,6vw,56px);
+        position:relative;box-shadow:0 30px 60px -40px rgba(80,65,40,.35)}
+  .card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(185,167,127,.35);pointer-events:none}
+  .dear{font-family:var(--script);font-size:clamp(38px,8vw,54px);line-height:1.2;margin:0 0 18px}
+  .text{font-size:clamp(19px,2.6vw,23px);margin:0}
+  .divider{display:flex;align-items:center;gap:14px;justify-content:center;margin:34px auto}
+  .divider::before,.divider::after{content:"";height:1px;width:min(28vw,170px);background:var(--ink);opacity:.55}
+  .divider svg{width:46px}
+  .sig{font-family:var(--script);font-size:clamp(34px,7.5vw,50px);margin:0}
+
+  h2{font-weight:400;letter-spacing:.45em;text-transform:uppercase;font-size:clamp(14px,2.3vw,17px);margin:0 0 30px;padding-left:.45em}
+  .script-title{font-family:var(--script);font-size:clamp(40px,8vw,58px);font-weight:400;line-height:1.1;margin:0 0 6px;letter-spacing:0;text-transform:none;padding:0}
+
+  /* Countdown */
+  .count{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,2vw,16px);margin-top:26px}
+  .count div{border:1px solid var(--line);background:rgba(251,248,243,.7);padding:18px 4px 12px}
+  .count b{display:block;font-weight:300;font-size:clamp(34px,7vw,52px);line-height:1;font-variant-numeric:tabular-nums}
+  .count small{display:block;margin-top:8px;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+  .done{margin-top:24px;font-family:var(--script);font-size:40px;display:none}
+
+  /* Venue */
+  .venue-name{font-size:clamp(24px,4vw,30px);font-weight:500;margin:0}
+  .venue-addr{color:var(--muted);margin:6px 0 26px}
+  .map{width:100%;aspect-ratio:4/3;border:1px solid var(--line);filter:grayscale(.85) sepia(.15) contrast(.95);display:block;background:#eee7da}
+  .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px}
+  .btn{appearance:none;border:1px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--serif);font-size:15px;
+       letter-spacing:.2em;text-transform:uppercase;padding:14px 22px;cursor:pointer;text-decoration:none;transition:background .3s,color .3s}
+  .btn:hover,.btn:focus-visible{background:var(--ink);color:var(--paper);outline:none}
+  .btn.solid{background:var(--ink);color:var(--paper)}
+  .btn.solid:hover{background:transparent;color:var(--ink)}
+
+  footer{position:relative;z-index:2;text-align:center;padding:70px 22px 90px}
+  footer .monogram{font-size:clamp(70px,16vw,110px)}
+  footer p{margin:10px 0 0;color:var(--muted)}
+
+  /* Scroll reveal */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1.2s ease, transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:520px){
+    .count small{letter-spacing:.12em;font-size:11px}
+    .door .panel{inset:5vmin 3.5vmin}
+    .date-row .side{min-width:78px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .hero [data-intro],.reveal{opacity:1;transform:none;filter:none}
+    .petals{display:none}
+  }
+</style>
+</head>
+<body class="locked">
+
+<div class="silk" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="petals" aria-hidden="true"></div>
+
+<!-- Doors -->
+<div id="gate" aria-hidden="true">
+  <div class="door left"><div class="panel"></div><div class="handle"></div><div class="sprig" data-sprig="7"></div></div>
+  <div class="door right"><div class="panel"></div><div class="handle"></div><div class="sprig" data-sprig="13"></div></div>
+</div>
+<div class="seal-wrap" id="sealWrap">
+  <button class="seal" id="seal" aria-label="Таклифномани очиш">J&amp;M</button>
+  <div class="seal-hint">Таклифномани очиш учун босинг</div>
+</div>
+
+<main>
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="corner tr" data-sprig="3" aria-hidden="true"></div>
+    <div class="corner bl" data-sprig="21" aria-hidden="true"></div>
+    <div class="wrap">
+      <div data-intro style="--d:.1"><svg class="leaf" data-leaf viewBox="0 0 160 60" aria-hidden="true"></svg></div>
+      <h1 class="monogram" data-intro style="--d:.3">J<span class="amp">&amp;</span>M</h1>
+      <p class="kicker" data-intro style="--d:.8">Таклифнома</p>
+      <p class="names" data-intro style="--d:1.1">Жахонгирбек <span style="font-size:.6em">&amp;</span> Медине</p>
+      <div class="date-row" data-intro style="--d:1.5">
+        <div class="side">Шанба</div>
+        <div class="big">05.12</div>
+        <div class="side">2026</div>
+      </div>
+      <a class="scroll-cue" href="#invite" data-intro style="--d:2">Пастга<i></i></a>
+    </div>
+  </section>
+
+  <!-- Invitation text -->
+  <section id="invite">
+    <div class="wrap">
+      <div class="card reveal">
+        <p class="dear">Хурматли <span id="guest">меҳмон</span>!</p>
+        <p class="text">
+          Сизни 2026 йил 5 декабрь куни соат 18:00 га Чирчиқ шаҳри, А.Навоий кўчаси,
+          Кимёгарлар тўйхонасида бўладиган висол оқшоми — никоҳ тўйимизда
+          азиз меҳмон бўлишга таклиф этамиз.
+        </p>
+        <div class="divider"><svg data-leaf viewBox="0 0 160 60" aria-hidden="true"></svg></div>
+        <p class="sig">Жахонгирбек – Медине</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countdown -->
+  <section id="countdown">
+    <div class="wrap reveal">
+      <h2 class="script-title">Тўйгача қолди</h2>
+      <div class="count" id="count">
+        <div><b data-u="d">00</b><small>кун</small></div>
+        <div><b data-u="h">00</b><small>соат</small></div>
+        <div><b data-u="m">00</b><small>дақиқа</small></div>
+        <div><b data-u="s">00</b><small>сония</small></div>
+      </div>
+      <p class="done" id="done">Бугун бизнинг кунимиз!</p>
+    </div>
+  </section>
+
+  <!-- Venue -->
+  <section id="venue">
+    <div class="wrap reveal">
+      <h2>Манзил</h2>
+      <p class="venue-name">Кимёгарлар тўйхонаси</p>
+      <p class="venue-addr">Чирчиқ шаҳри, А.Навоий кўчаси · соат 18:00</p>
+      <iframe class="map" id="map" loading="lazy" title="Харита" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="btns">
+        <a class="btn solid" id="gmaps" target="_blank" rel="noopener">Google Maps</a>
+        <a class="btn" id="ymaps" target="_blank" rel="noopener">Яндекс Карта</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendar -->
+  <section id="calendar">
+    <div class="wrap reveal">
+      <h2>Санани сақлаб қўйинг</h2>
+      <p class="text" style="color:var(--muted)">5 декабрь 2026, шанба · соат 18:00</p>
+      <div class="btns">
+        <a class="btn" id="gcal" target="_blank" rel="noopener">Google тақвим</a>
+        <button class="btn" id="ics">Тақвимга қўшиш (.ics)</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="reveal">
+    <p style="font-size:clamp(20px,3vw,24px);color:var(--ink);margin:0 0 6px">Сизни интизорлик билан кутиб қоламиз!</p>
+    <div class="monogram">J<span class="amp">&amp;</span>M</div>
+    <p>05 · 12 · 2026</p>
+  </div>
+</footer>
+
+<script>
+/* ====== Edit here ====== */
+const CONFIG = {
+  start: '2026-12-05T18:00:00+05:00',   // Toshkent vaqti (UTC+5)
+  end:   '2026-12-05T23:00:00+05:00',
+  title: 'Жахонгирбек & Медине — никоҳ тўйи',
+  place: 'Кимёгарлар тўйхонаси, А.Навоий кўчаси, Чирчиқ',
+  mapQuery: "Kimyogarlar to'yxonasi, Chirchiq",   // or "41.4689,69.5822" coordinates
+};
+/* ======================= */
+
+// --- Seeded random
+function rng(seed){return()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646}}
+
+// --- Gypsophila (baby's breath) SVG generator
+function sprig(seed){
+  const r=rng(seed*7919+1); let stems='',flowers='';
+  const flower=(x,y,s)=>{let g='';const n=5,rot=r()*6.28;
+    for(let i=0;i<n;i++){const a=rot+i*6.283/n;g+=`<circle cx="${(x+Math.cos(a)*1.9*s).toFixed(1)}" cy="${(y+Math.sin(a)*1.9*s).toFixed(1)}" r="${(1.8*s).toFixed(2)}"/>`}
+    return `<g>${g}<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(0.9*s).toFixed(2)}" fill="#e7d9b8" stroke="none"/></g>`};
+  const branch=(x,y,ang,len,w,depth)=>{
+    const bend=(r()-.5)*.5, x2=x+Math.cos(ang)*len, y2=y+Math.sin(ang)*len;
+    const cx=x+Math.cos(ang+bend)*len*.55, cy=y+Math.sin(ang+bend)*len*.55;
+    stems+=`<path d="M${x.toFixed(1)} ${y.toFixed(1)}Q${cx.toFixed(1)} ${cy.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}" stroke-width="${w.toFixed(2)}"/>`;
+    if(depth<=0){ for(let k=0;k<3;k++) flowers+=flower(x2+(r()-.5)*9,y2+(r()-.5)*9,.8+r()*.5); return }
+    const kids=2+(r()<.45?1:0);
+    for(let i=0;i<kids;i++){ branch(x2,y2,ang+(r()-.5)*1.5,len*(.55+r()*.2),w*.7,depth-1) }
+  };
+  for(let i=0;i<4;i++) branch(10+r()*25,290-r()*20,-1.0-r()*.6,70+r()*35,1.6,3);
+  return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;overflow:visible">
+    <g fill="none" stroke="#a7a58e" stroke-linecap="round">${stems}</g>
+    <g fill="#fffdf8" stroke="#ddd5c4" stroke-width=".4">${flowers}</g></svg>`;
+}
+document.querySelectorAll('[data-sprig]').forEach(el=>el.innerHTML=sprig(+el.dataset.sprig));
+
+// --- Olive leaf sprig
+function leafSVG(){
+  let s='<path d="M8 40 Q70 30 152 14" fill="none" stroke="#7f8a76" stroke-width="1.2" stroke-linecap="round"/>';
+  const pts=[[30,36,-1],[48,33,1],[64,30,-1],[82,26,1],[98,23,-1],[114,20,1],[130,17,-1]];
+  pts.forEach(([x,y,side],i)=>{const ang=side>0?-55:35, len=16-i*.6;
+    s+=`<ellipse cx="${x}" cy="${y}" rx="${len/2}" ry="3.4" transform="rotate(${ang} ${x} ${y}) translate(${len/2} 0)" fill="#9aa492" opacity=".85"/>`});
+  s+='<ellipse cx="150" cy="14" rx="7" ry="3" transform="rotate(-12 150 14)" fill="#9aa492"/>';
+  return s;
+}
+document.querySelectorAll('[data-leaf]').forEach(el=>el.innerHTML=leafSVG());
+
+// --- Petals
+(()=>{const box=document.querySelector('.petals'), n=window.innerWidth<600?12:20;
+  for(let i=0;i<n;i++){const p=document.createElement('span');p.className='petal';
+    const sz=4+Math.random()*7;p.style.width=p.style.height=sz+'px';
+    p.style.left=Math.random()*100+'vw';p.style.opacity=.5+Math.random()*.5;
+    p.style.animationDuration=12+Math.random()*14+'s';p.style.animationDelay=-Math.random()*20+'s';box.appendChild(p)}})();
+
+// --- Personal guest name: ?name=Алишер%20ака
+(()=>{const q=new URLSearchParams(location.search);const n=(q.get('name')||q.get('to')||'').trim();
+  if(n) document.getElementById('guest').textContent=n.slice(0,60)})();
+
+// --- Doors
+const gate=document.getElementById('gate'), sealWrap=document.getElementById('sealWrap');
+function openDoors(){
+  sealWrap.classList.add('hide');
+  setTimeout(()=>{gate.classList.add('open');document.body.classList.add('revealed')},350);
+  setTimeout(()=>{gate.classList.add('gone');sealWrap.remove();document.body.classList.remove('locked')},2900);
+}
+document.getElementById('seal').addEventListener('click',openDoors,{once:true});
+gate.addEventListener('click',()=>document.getElementById('seal').click());
+
+// --- Scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// --- Countdown
+(()=>{const t=new Date(CONFIG.start).getTime(), el=u=>document.querySelector(`[data-u="${u}"]`), pad=v=>String(v).padStart(2,'0');
+  function tick(){let d=t-Date.now();
+    if(d<=0){document.getElementById('count').style.display='none';document.getElementById('done').style.display='block';return}
+    const s=Math.floor(d/1000);el('d').textContent=pad(Math.floor(s/86400));el('h').textContent=pad(Math.floor(s%86400/3600));
+    el('m').textContent=pad(Math.floor(s%3600/60));el('s').textContent=pad(s%60);setTimeout(tick,1000)}
+  tick()})();
+
+// --- Map & links
+(()=>{const q=encodeURIComponent(CONFIG.mapQuery);
+  document.getElementById('map').src=`https://maps.google.com/maps?q=${q}&z=15&output=embed`;
+  document.getElementById('gmaps').href=`https://www.google.com/maps/search/?api=1&query=${q}`;
+  document.getElementById('ymaps').href=`https://yandex.uz/maps/?text=${q}`;
+  const z=s=>new Date(s).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+  document.getElementById('gcal').href='https://calendar.google.com/calendar/render?action=TEMPLATE'
+    +`&text=${encodeURIComponent(CONFIG.title)}&dates=${z(CONFIG.start)}/${z(CONFIG.end)}`
+    +`&location=${encodeURIComponent(CONFIG.place)}&details=${encodeURIComponent(location.href.split('?')[0])}`;
+  document.getElementById('ics').addEventListener('click',()=>{
+    const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//wedding//uz','BEGIN:VEVENT',
+      'UID:'+Date.now()+'@wedding','DTSTAMP:'+z(new Date().toISOString()),'DTSTART:'+z(CONFIG.start),'DTEND:'+z(CONFIG.end),
+      'SUMMARY:'+CONFIG.title,'LOCATION:'+CONFIG.place.replace(/,/g,'\\,'),'END:VEVENT','END:VCALENDAR'].join('\r\n');
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
+    a.download='wedding-2026-12-05.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+})();
+</script>
+</body>
+</html>
