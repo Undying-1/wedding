@@ -288,14 +288,14 @@ const T = {
     docTitle: 'Жахонгирбек & Медине — Таклифнома',
     open: 'Таклифномани очиш', hint: 'Таклифномани очиш учун босинг',
     kicker: 'Таклифнома', day: 'Шанба', scroll: 'Пастга',
-    dear: n => n ? `Хурматли ${n}!` : 'Хурматли меҳмон!',
+    dear: n => n ? `Хурматли ${n}!` : 'Хурматли мехмон!',
     body: `Сизни оиламиз барпо бўлиши қувончини биз билан баҳам кўришга таклиф этамиз!<br>
            Никоҳ тўйимизга бағишланган тантана
            <span class="when">2026 йил 5 декабрь,<br>соат&nbsp;18:00&nbsp;да</span>
            <b>«Кимёгар»</b> ресторанида бўлиб ўтади<br>
            (Чирчиқ шаҳри, мўлжал — Кимёгарлар боғи).<br><br>
            Ушбу бахтли кунни Сиз билан бирга ўтказишдан жуда хурсанд бўламиз!`,
-    left: 'Тўйгача қолди', ud: 'кун', uh: 'соат', um: 'дақиқа', us: 'сония', done: 'Бугун бизнинг кунимиз!',
+    left: 'Тўйгача колди', ud: 'кун', uh: 'соат', um: 'дақиқа', us: 'сония', done: 'Бугун бизнинг кунимиз!',
     where: 'Манзил', venue: '«Кимёгар» ресторани', addr: 'Чирчиқ шаҳри · мўлжал — Кимёгарлар боғи',
       save: 'Санани сақлаб қўйинг', saveDate: '5 декабрь 2026, шанба · соат 18:00',
     gcal: 'Google тақвим', ics: 'Тақвимга қўшиш',
@@ -413,7 +413,7 @@ function updateCalendar(){const t=T[LANG];
     +`&text=${encodeURIComponent(t.calTitle)}&dates=${z(CONFIG.start)}/${z(CONFIG.end)}`
     +`&location=${encodeURIComponent(t.calPlace)}&details=${encodeURIComponent(location.href.split('?')[0])}`}
 (()=>{const point=CONFIG.coords.replace(/\s/g,''), q=encodeURIComponent(point||CONFIG.mapQuery);
-  document.getElementById('map').src = `https://maps.google.com/maps?q=${q}&z=${point?17:16}&output=embed`;
+  document.getElementById('map').src = `https://maps.google.com/maps?q=${q}&z=15&output=embed`;
   document.getElementById('gmaps').href = CONFIG.googleUrl || `https://www.google.com/maps/search/?api=1&query=${q}`;
   document.getElementById('ics').addEventListener('click',()=>{const t=T[LANG];
     const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//wedding//uz','BEGIN:VEVENT',
