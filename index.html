@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -144,6 +144,15 @@
   .btn.solid{background:var(--ink);color:var(--paper)}
   .btn.solid:hover{background:transparent;color:var(--ink)}
 
+  /* Language switch */
+  .lang{position:fixed;top:max(14px,env(safe-area-inset-top));right:14px;z-index:70;display:flex;
+        border:1px solid var(--line);background:rgba(251,248,243,.85);backdrop-filter:blur(4px)}
+  .lang button{appearance:none;border:0;background:transparent;color:var(--muted);font-family:var(--serif);
+               font-size:13px;letter-spacing:.2em;padding:8px 12px;cursor:pointer;transition:background .3s,color .3s}
+  .lang button.on{background:var(--ink);color:var(--paper)}
+  .text b{font-weight:500}
+  .text .when{display:block;font-size:1.25em;margin:10px 0;letter-spacing:.04em}
+
   footer{position:relative;z-index:2;text-align:center;padding:70px 22px 90px}
   footer .monogram{font-size:clamp(70px,16vw,110px)}
   footer p{margin:10px 0 0;color:var(--muted)}
@@ -174,9 +183,12 @@
   <div class="door left"><div class="panel"></div><div class="handle"></div><div class="sprig" data-sprig="7"></div></div>
   <div class="door right"><div class="panel"></div><div class="handle"></div><div class="sprig" data-sprig="13"></div></div>
 </div>
+<div class="lang" role="group" aria-label="Til / Язык">
+  <button data-lang="uz">UZ</button><button data-lang="ru">RU</button>
+</div>
 <div class="seal-wrap" id="sealWrap">
-  <button class="seal" id="seal" aria-label="Таклифномани очиш">J&amp;M</button>
-  <div class="seal-hint">Таклифномани очиш учун босинг</div>
+  <button class="seal" id="seal" data-i18n-aria="open">J&amp;M</button>
+  <div class="seal-hint" data-i18n="hint"></div>
 </div>
 
 <main>
@@ -187,14 +199,14 @@
     <div class="wrap">
       <div data-intro style="--d:.1"><svg class="leaf" data-leaf viewBox="0 0 160 60" aria-hidden="true"></svg></div>
       <h1 class="monogram" data-intro style="--d:.3">J<span class="amp">&amp;</span>M</h1>
-      <p class="kicker" data-intro style="--d:.8">Таклифнома</p>
+      <p class="kicker" data-intro style="--d:.8" data-i18n="kicker"></p>
       <p class="names" data-intro style="--d:1.1">Жахонгирбек <span style="font-size:.6em">&amp;</span> Медине</p>
       <div class="date-row" data-intro style="--d:1.5">
-        <div class="side">Шанба</div>
+        <div class="side" data-i18n="day"></div>
         <div class="big">05.12</div>
         <div class="side">2026</div>
       </div>
-      <a class="scroll-cue" href="#invite" data-intro style="--d:2">Пастга<i></i></a>
+      <a class="scroll-cue" href="#invite" data-intro style="--d:2"><span data-i18n="scroll"></span><i></i></a>
     </div>
   </section>
 
@@ -202,12 +214,8 @@
   <section id="invite">
     <div class="wrap">
       <div class="card reveal">
-        <p class="dear">Хурматли <span id="guest">меҳмон</span>!</p>
-        <p class="text">
-          Сизни 2026 йил 5 декабрь куни соат 18:00 га Чирчиқ шаҳри, А.Навоий кўчаси,
-          Кимёгарлар тўйхонасида бўладиган висол оқшоми — никоҳ тўйимизда
-          азиз меҳмон бўлишга таклиф этамиз.
-        </p>
+        <p class="dear" id="dear"></p>
+        <p class="text" data-i18n-html="body"></p>
         <div class="divider"><svg data-leaf viewBox="0 0 160 60" aria-hidden="true"></svg></div>
         <p class="sig">Жахонгирбек – Медине</p>
       </div>
@@ -217,27 +225,26 @@
   <!-- Countdown -->
   <section id="countdown">
     <div class="wrap reveal">
-      <h2 class="script-title">Тўйгача қолди</h2>
+      <h2 class="script-title" data-i18n="left"></h2>
       <div class="count" id="count">
-        <div><b data-u="d">00</b><small>кун</small></div>
-        <div><b data-u="h">00</b><small>соат</small></div>
-        <div><b data-u="m">00</b><small>дақиқа</small></div>
-        <div><b data-u="s">00</b><small>сония</small></div>
+        <div><b data-u="d">00</b><small data-i18n="ud"></small></div>
+        <div><b data-u="h">00</b><small data-i18n="uh"></small></div>
+        <div><b data-u="m">00</b><small data-i18n="um"></small></div>
+        <div><b data-u="s">00</b><small data-i18n="us"></small></div>
       </div>
-      <p class="done" id="done">Бугун бизнинг кунимиз!</p>
+      <p class="done" id="done" data-i18n="done"></p>
     </div>
   </section>
 
   <!-- Venue -->
   <section id="venue">
     <div class="wrap reveal">
-      <h2>Манзил</h2>
-      <p class="venue-name">Кимёгарлар тўйхонаси</p>
-      <p class="venue-addr">Чирчиқ шаҳри, А.Навоий кўчаси · соат 18:00</p>
-      <iframe class="map" id="map" loading="lazy" title="Харита" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <h2 data-i18n="where"></h2>
+      <p class="venue-name" data-i18n="venue"></p>
+      <p class="venue-addr" data-i18n="addr"></p>
+      <iframe class="map" id="map" loading="lazy" title="Map" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div class="btns">
-        <a class="btn solid" id="gmaps" target="_blank" rel="noopener">Google Maps</a>
-        <a class="btn" id="ymaps" target="_blank" rel="noopener">Яндекс Карта</a>
+        <a class="btn solid" id="gmaps" target="_blank" rel="noopener" data-i18n="route"></a>
       </div>
     </div>
   </section>
@@ -245,11 +252,11 @@
   <!-- Calendar -->
   <section id="calendar">
     <div class="wrap reveal">
-      <h2>Санани сақлаб қўйинг</h2>
-      <p class="text" style="color:var(--muted)">5 декабрь 2026, шанба · соат 18:00</p>
+      <h2 data-i18n="save"></h2>
+      <p class="text" style="color:var(--muted)" data-i18n="saveDate"></p>
       <div class="btns">
-        <a class="btn" id="gcal" target="_blank" rel="noopener">Google тақвим</a>
-        <button class="btn" id="ics">Тақвимга қўшиш (.ics)</button>
+        <a class="btn" id="gcal" target="_blank" rel="noopener" data-i18n="gcal"></a>
+        <button class="btn" id="ics" data-i18n="ics"></button>
       </div>
     </div>
   </section>
@@ -257,7 +264,7 @@
 
 <footer>
   <div class="reveal">
-    <p style="font-size:clamp(20px,3vw,24px);color:var(--ink);margin:0 0 6px">Сизни интизорлик билан кутиб қоламиз!</p>
+    <p style="font-size:clamp(20px,3vw,24px);color:var(--ink);margin:0 0 6px" data-i18n="wait"></p>
     <div class="monogram">J<span class="amp">&amp;</span>M</div>
     <p>05 · 12 · 2026</p>
   </div>
@@ -268,9 +275,54 @@
 const CONFIG = {
   start: '2026-12-05T18:00:00+05:00',   // Toshkent vaqti (UTC+5)
   end:   '2026-12-05T23:00:00+05:00',
-  title: 'Жахонгирбек & Медине — никоҳ тўйи',
-  place: 'Кимёгарлар тўйхонаси, А.Навоий кўчаси, Чирчиқ',
-  mapQuery: "Kimyogarlar to'yxonasi, Chirchiq",   // or "41.4689,69.5822" coordinates
+  defaultLang: 'ru',                   // 'uz' or 'ru'
+  // Exact point: paste coordinates from Google Maps, e.g. '41.47123,69.58456'.
+  // While empty, the address below is used for the search.
+  coords: '',
+  mapQuery: 'Kimyogar, Alisher Navoiy shoh ko\'chasi 196A, Chirchiq',
+};
+
+const T = {
+  uz: {
+    docTitle: 'Жахонгирбек & Медине — Таклифнома',
+    open: 'Таклифномани очиш', hint: 'Таклифномани очиш учун босинг',
+    kicker: 'Таклифнома', day: 'Шанба', scroll: 'Пастга',
+    dear: n => n ? `Хурматли ${n}!` : 'Хурматли меҳмон!',
+    body: `Сизни оиламиз барпо бўлиши қувончини биз билан баҳам кўришга таклиф этамиз!<br>
+           Никоҳ тўйимизга бағишланган тантана
+           <span class="when">2026 йил 5 декабрь,<br>соат&nbsp;18:00&nbsp;да</span>
+           <b>«Кимёгар»</b> ресторанида бўлиб ўтади<br>
+           (Чирчиқ шаҳри, мўлжал — Кимёгарлар боғи).<br><br>
+           Ушбу бахтли кунни Сиз билан бирга ўтказишдан жуда хурсанд бўламиз!`,
+    left: 'Тўйгача қолди', ud: 'кун', uh: 'соат', um: 'дақиқа', us: 'сония', done: 'Бугун бизнинг кунимиз!',
+    where: 'Манзил', venue: '«Кимёгар» ресторани', addr: 'Чирчиқ шаҳри · мўлжал — Кимёгарлар боғи',
+    route: 'Харитада очиш',
+    save: 'Санани сақлаб қўйинг', saveDate: '5 декабрь 2026, шанба · соат 18:00',
+    gcal: 'Google тақвим', ics: 'Тақвимга қўшиш',
+    wait: 'Сизни интизорлик билан кутиб қоламиз!',
+    calTitle: 'Жахонгирбек & Медине — никоҳ тўйи',
+    calPlace: '«Кимёгар» ресторани, Чирчиқ (мўлжал — Кимёгарлар боғи)',
+  },
+  ru: {
+    docTitle: 'Жахонгирбек & Медине — Приглашение',
+    open: 'Открыть приглашение', hint: 'Нажмите, чтобы открыть приглашение',
+    kicker: 'Приглашение', day: 'Суббота', scroll: 'Листайте',
+    dear: (n, g) => n ? `${g==='f' ? 'Дорогая' : g==='p' ? 'Дорогие' : 'Дорогой'} ${n}!` : 'Дорогие гости!',
+    body: `Приглашаем Вас разделить с нами радость создания нашей семьи!<br>
+           Торжество, посвящённое нашему бракосочетанию, состоится
+           <span class="when">05 декабря 2026 года<br>в&nbsp;18:00</span>
+           в ресторане <b>«Кимёгар»</b><br>
+           (г. Чирчик, ориентир — парк Химиков).<br><br>
+           Нам будет очень приятно провести этот счастливый день вместе с Вами!`,
+    left: 'До свадьбы осталось', ud: 'дней', uh: 'часов', um: 'минут', us: 'секунд', done: 'Сегодня наш день!',
+    where: 'Место', venue: 'Ресторан «Кимёгар»', addr: 'г. Чирчик · ориентир — парк Химиков',
+    route: 'Открыть на карте',
+    save: 'Сохраните дату', saveDate: '5 декабря 2026, суббота · 18:00',
+    gcal: 'Google Календарь', ics: 'Добавить в календарь',
+    wait: 'С нетерпением ждём Вас!',
+    calTitle: 'Свадьба Жахонгирбека и Медине',
+    calPlace: 'Ресторан «Кимёгар», Чирчик (ориентир — парк Химиков)',
+  }
 };
 /* ======================= */
 
@@ -316,9 +368,22 @@ document.querySelectorAll('[data-leaf]').forEach(el=>el.innerHTML=leafSVG());
     p.style.left=Math.random()*100+'vw';p.style.opacity=.5+Math.random()*.5;
     p.style.animationDuration=12+Math.random()*14+'s';p.style.animationDelay=-Math.random()*20+'s';box.appendChild(p)}})();
 
-// --- Personal guest name: ?name=Алишер%20ака
-(()=>{const q=new URLSearchParams(location.search);const n=(q.get('name')||q.get('to')||'').trim();
-  if(n) document.getElementById('guest').textContent=n.slice(0,60)})();
+// --- Language + personal name: ?lang=ru&name=Алишер%20ака&g=f
+const Q=new URLSearchParams(location.search);
+const GUEST=(Q.get('name')||Q.get('to')||'').trim().slice(0,60), G=(Q.get('g')||'').toLowerCase();
+let LANG='uz';
+function setLang(l){
+  LANG=T[l]?l:CONFIG.defaultLang; const t=T[LANG];
+  document.documentElement.lang=LANG; document.title=t.docTitle;
+  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t[el.dataset.i18n]);
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>el.innerHTML=t[el.dataset.i18nHtml]);
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>el.setAttribute('aria-label',t[el.dataset.i18nAria]));
+  document.getElementById('dear').textContent=t.dear(GUEST,G);   // textContent: guest name is never parsed as HTML
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===LANG));
+  updateCalendar();
+  try{localStorage.setItem('lang',LANG)}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();setLang(b.dataset.lang)}));
 
 // --- Doors
 const gate=document.getElementById('gate'), sealWrap=document.getElementById('sealWrap');
@@ -342,22 +407,26 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     el('m').textContent=pad(Math.floor(s%3600/60));el('s').textContent=pad(s%60);setTimeout(tick,1000)}
   tick()})();
 
-// --- Map & links
-(()=>{const q=encodeURIComponent(CONFIG.mapQuery);
-  document.getElementById('map').src=`https://maps.google.com/maps?q=${q}&z=15&output=embed`;
-  document.getElementById('gmaps').href=`https://www.google.com/maps/search/?api=1&query=${q}`;
-  document.getElementById('ymaps').href=`https://yandex.uz/maps/?text=${q}`;
-  const z=s=>new Date(s).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+// --- Map & calendar
+const z=s=>new Date(s).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+function updateCalendar(){const t=T[LANG];
   document.getElementById('gcal').href='https://calendar.google.com/calendar/render?action=TEMPLATE'
-    +`&text=${encodeURIComponent(CONFIG.title)}&dates=${z(CONFIG.start)}/${z(CONFIG.end)}`
-    +`&location=${encodeURIComponent(CONFIG.place)}&details=${encodeURIComponent(location.href.split('?')[0])}`;
-  document.getElementById('ics').addEventListener('click',()=>{
+    +`&text=${encodeURIComponent(t.calTitle)}&dates=${z(CONFIG.start)}/${z(CONFIG.end)}`
+    +`&location=${encodeURIComponent(t.calPlace)}&details=${encodeURIComponent(location.href.split('?')[0])}`}
+(()=>{const point=CONFIG.coords.replace(/\s/g,''), q=encodeURIComponent(point||CONFIG.mapQuery);
+  document.getElementById('map').src=`https://maps.google.com/maps?q=${q}&z=${point?17:16}&output=embed`;
+  document.getElementById('gmaps').href=`https://www.google.com/maps/search/?api=1&query=${q}`;
+  document.getElementById('ics').addEventListener('click',()=>{const t=T[LANG];
     const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//wedding//uz','BEGIN:VEVENT',
       'UID:'+Date.now()+'@wedding','DTSTAMP:'+z(new Date().toISOString()),'DTSTART:'+z(CONFIG.start),'DTEND:'+z(CONFIG.end),
-      'SUMMARY:'+CONFIG.title,'LOCATION:'+CONFIG.place.replace(/,/g,'\\,'),'END:VEVENT','END:VCALENDAR'].join('\r\n');
+      'SUMMARY:'+t.calTitle,'LOCATION:'+t.calPlace.replace(/,/g,'\\,'),'END:VEVENT','END:VCALENDAR'].join('\r\n');
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
     a.download='wedding-2026-12-05.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 })();
+
+// --- Initial language: ?lang= → saved choice → default
+(()=>{let saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
+  setLang(Q.get('lang')||saved||CONFIG.defaultLang)})();
 </script>
 </body>
 </html>
