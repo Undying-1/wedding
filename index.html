@@ -280,7 +280,6 @@ const CONFIG = {
   // While empty, the address below is used for the search.
   coords: '',
   googleUrl: 'https://maps.app.goo.gl/UgFDQi3xu44p8L2p7',   // button "Google Maps"
-  yandexOid: '4470338609',                                  // Yandex Maps place card «Кимёгар»
   mapQuery: 'Kimyogar, Alisher Navoiy shoh ko\'chasi 196A, Chirchiq',
 };
 
@@ -298,8 +297,7 @@ const T = {
            Ушбу бахтли кунни Сиз билан бирга ўтказишдан жуда хурсанд бўламиз!`,
     left: 'Тўйгача қолди', ud: 'кун', uh: 'соат', um: 'дақиқа', us: 'сония', done: 'Бугун бизнинг кунимиз!',
     where: 'Манзил', venue: '«Кимёгар» ресторани', addr: 'Чирчиқ шаҳри · мўлжал — Кимёгарлар боғи',
-    yandex: 'Яндекс Карта',
-    save: 'Санани сақлаб қўйинг', saveDate: '5 декабрь 2026, шанба · соат 18:00',
+      save: 'Санани сақлаб қўйинг', saveDate: '5 декабрь 2026, шанба · соат 18:00',
     gcal: 'Google тақвим', ics: 'Тақвимга қўшиш',
     wait: 'Сизни интизорлик билан кутиб қоламиз!',
     calTitle: 'Жахонгирбек & Медине — никоҳ тўйи',
@@ -318,8 +316,7 @@ const T = {
            Нам будет очень приятно провести этот счастливый день вместе с Вами!`,
     left: 'До свадьбы осталось', ud: 'дней', uh: 'часов', um: 'минут', us: 'секунд', done: 'Сегодня наш день!',
     where: 'Место', venue: 'Ресторан «Кимёгар»', addr: 'г. Чирчик · ориентир — парк Химиков',
-    yandex: 'Яндекс Карты',
-    save: 'Сохраните дату', saveDate: '5 декабря 2026, суббота · 18:00',
+      save: 'Сохраните дату', saveDate: '5 декабря 2026, суббота · 18:00',
     gcal: 'Google Календарь', ics: 'Добавить в календарь',
     wait: 'С нетерпением ждём Вас!',
     calTitle: 'Свадьба Жахонгирбека и Медине',
@@ -416,10 +413,7 @@ function updateCalendar(){const t=T[LANG];
     +`&text=${encodeURIComponent(t.calTitle)}&dates=${z(CONFIG.start)}/${z(CONFIG.end)}`
     +`&location=${encodeURIComponent(t.calPlace)}&details=${encodeURIComponent(location.href.split('?')[0])}`}
 (()=>{const point=CONFIG.coords.replace(/\s/g,''), q=encodeURIComponent(point||CONFIG.mapQuery);
-  // Embedded map: Yandex place card (one exact pin); falls back to Google search if no oid
-  document.getElementById('map').src = CONFIG.yandexOid
-    ? `https://yandex.ru/map-widget/v1/?oid=${CONFIG.yandexOid}&z=16`
-    : `https://maps.google.com/maps?q=${q}&z=${point?17:16}&output=embed`;
+  document.getElementById('map').src = `https://maps.google.com/maps?q=${q}&z=${point?17:16}&output=embed`;
   document.getElementById('gmaps').href = CONFIG.googleUrl || `https://www.google.com/maps/search/?api=1&query=${q}`;
   document.getElementById('ics').addEventListener('click',()=>{const t=T[LANG];
     const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//wedding//uz','BEGIN:VEVENT',
